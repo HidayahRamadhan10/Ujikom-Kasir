@@ -40,7 +40,7 @@
                     <i class="fas fa-store mr-3 group-hover:text-blue-400"></i>Produk
                 </a>
                 <a href="{{ route('pembelian.index') }}" class="group flex items-center px-4 py-3 hover:bg-gray-800 transition duration-200 {{ request()->routeIs('pembelian.*') ? 'bg-gray-800 text-blue-400' : 'text-gray-300' }}">
-                    <i class="fas fa-cash-register mr-3 group-hover:text-blue-400"></i>Pembelian
+                    <i class="fas fa-cash-register mr-3 group-hover:text-blue-400"></i>Penjualan
                 </a>
                 @if (Auth::user() && Auth::user()->role === 'admin')
                     <a href="{{ route('user.index') }}" class="group flex items-center px-4 py-3 hover:bg-gray-800 transition duration-200 {{ request()->routeIs('users.*') ? 'bg-gray-800 text-blue-400' : 'text-gray-300' }}">

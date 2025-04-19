@@ -1,11 +1,14 @@
 <?php
 
+use App\Exports\PembelianExport;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PembelianController;
 use App\Http\Controllers\DetailPembelianController;
+use Maatwebsite\Excel\Facades\Excel;
+
 
 
 
@@ -46,6 +49,11 @@ Route::get('/pembelian', [PembelianController::class, 'index'])->name('pembelian
     Route::post('/pembelian/pembayaran', [PembelianController::class, 'pembayaran'])->name('pembelian.pembayaran');
     Route::get('/check-member/{phone}', [PembelianController::class, 'checkMember']);
     Route::get('/pembelian/detail/{pembelian}', [PembelianController::class, 'detail'])->name('pembelian.detail');
+    Route::get('/pembelian/{id}/export-pdf', [PembelianController::class, 'exportPDF'])->name('pembelian.export_pdf');
+    Route::get('/export-excel', function () {
+        return Excel::download(new PembelianExport, 'data-pembelian.xlsx');
+        })->name('export-excel');
+
 
      Route::get('/pembelian', [PembelianController::class, 'index'])->name('pembelian.index');
     Route::get('/pembelian/create', [PembelianController::class, 'create'])->name('pembelian.create');
@@ -54,6 +62,13 @@ Route::get('/pembelian', [PembelianController::class, 'index'])->name('pembelian
     Route::post('/pembelian/confirm', [PembelianController::class, 'confirm'])->name('pembelian.confirm');
 
     Route::get('/pembelian/{id}/detail-html', [DetailPembelianController::class, 'ajaxDetailHTML']);
+
+    // Route::get('generate-pdf', [PdfController::class, 'generatePdf']);
+    // Route::get('export-excel', [ExcelController::class, 'exportExcel']);
+
+
+
+    
 
 
 

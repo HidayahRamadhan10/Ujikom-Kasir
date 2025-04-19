@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\PembelianExport;
 use App\Models\Pembelian;
 use App\Models\Product;
 use App\Models\Member;
 use App\Models\DetailPembelian;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class PembelianController extends Controller
 {
@@ -322,4 +325,17 @@ class PembelianController extends Controller
             return response()->json(['exists' => false]);
         }
 
+        public function exportPDF($id)
+        {
+            $pembelian = Pembelian::with('details.product')->findOrFail($id);
+            $member = Member::where('name', $pembelian->customer_name)->first();
+
+            $pdf = Pdf::loadView('pdf.struk', compact('pembelian', 'member'));
+            return $pdf->download('Struk Pembelian' . $pembelian->id . '.pdf');
+        }
+
+        public function exportExcel()
+        {
+            return Excel::download(new PembelianExport, 'data-pembelian.xlsx');
+        }
     }

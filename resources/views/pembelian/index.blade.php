@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Pembelian')
+@section('title', 'Penjualan')
 
 @section('content')
 <div class="container mx-auto px-4 py-6">
@@ -18,9 +18,9 @@
 
     <div class="bg-white shadow-md rounded-lg overflow-hidden">
         <div class="px-6 py-4 flex flex-wrap justify-between items-center border-b bg-gray-50 gap-4">
-            <a href="#" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md transition">
+            <a href="{{ route('export-excel') }}" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md transition">
                 <i class="fas fa-file-excel mr-1"></i>Export Excel
-            </a>
+            </a>            
 
             <div class="flex items-center space-x-2">
                 <span class="text-gray-600">Tampilkan</span>
@@ -61,9 +61,6 @@
                            onclick="showDetail({{ $pembelian->id }})" 
                            class="inline-block text-yellow-500 hover:text-yellow-600  px-3 py-1 rounded transition mr-1">
                             <i class="fas fa-eye"></i>
-                        </a>
-                        <a href="" class="inline-block text-blue-500 hover:text-blue-600 px-3 py-1 rounded transition">
-                            <i class="fas fa-download"></i>
                         </a>
                     </td>
                 </tr>
