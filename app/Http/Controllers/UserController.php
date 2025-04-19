@@ -66,17 +66,20 @@ class UserController extends Controller
         }
 
         $user->update($data);
-
         return redirect()->route('user.index')
             ->with('success', 'User successfully updated');
     }
-
     public function destroy(User $user)
-    {
-        $user->delete();
-        return redirect()->route('user.index')
-            ->with('success', 'User successfully deleted');
+{
+    if ($user->role === 'admin') {
+        return redirect()->route(route: 'user.index')
+            ->with('error', 'Admin tidak bisa dihapus.');
     }
+
+    $user->delete();
+    return redirect()->route('user.index')
+        ->with('success', 'User successfully deleted');
+}
 
     public function login(Request $request)
     {

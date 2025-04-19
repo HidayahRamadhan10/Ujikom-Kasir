@@ -77,9 +77,10 @@
             <a href="{{ route('pembelian.index') }}" class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 mx-2 rounded-md text-sm">
                 Kembali
             </a>
-            <a href="{{ route('pembelian.download', ['invoice' => $invoice_number]) }}" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm">
-                Unduh
-            </a>
+            <a href="{{ route('pembelian.export_pdf', $pembelian->id) }}" 
+                class="px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-md ml-2">
+                Unduh Struk
+             </a>             
         </div>
     </div>
 </div>

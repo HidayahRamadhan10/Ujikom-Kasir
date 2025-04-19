@@ -108,7 +108,7 @@ class ProductController extends Controller
     {
         $request->validate([
             'product_id' => 'required|exists:products,id',
-            'new_stock' => 'required|integer|min:0',
+            'new_stock' => 'required|integer|min:0|max:100',
         ]);
 
         $product = Product::findOrFail($request->product_id);
